@@ -77,6 +77,7 @@ def predict():
         return jsonify({"error": "Failed to upload predicted image to S3"}), 500
 
 
+
     # Parse prediction labels and create a summary
     pred_summary_path = Path(f'static/data/{prediction_id}/labels/{original_img_path.split(".")[0]}.txt')
     if pred_summary_path.exists():
