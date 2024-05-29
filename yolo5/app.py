@@ -53,16 +53,7 @@ def predict():
 
     # This is the path for the predicted image with labels
     # The predicted image typically includes bounding boxes drawn around the detected objects, along with class labels and possibly confidence scores.
-    try:
-        predicted_img_path = Path(f'static/data/{prediction_id}/{original_img_path}')
-        s3_predicted_directory_path = 'predicted'
-        predicted_file_name = f'{Path(img_name).stem}-predicted{Path(img_name).suffix}'
-        full_name_s3 = f'{s3_predicted_directory_path}/{prediction_id}/{predicted_file_name}'
-        s3.upload_file(predicted_img_path, images_bucket, full_name_s3)
-        logger.info(f'Uploaded predicted image to S3: {full_name_s3}')
-    except Exception as e:
-        logger.error(f'Error uploading predicted image to S3: {str(e)}')
-        return jsonify({"error": "Failed to upload predicted image to S3"}), 500
+
 
     # TODO Uploads the predicted image (predicted_img_path) to S3 (be careful not to override the original image).
     try:
@@ -115,15 +106,15 @@ def predict():
         }
 
         # TODO store the prediction_summary in MongoDB
-    try:
-        client = mongo_client.MongoClient(MONGO_URI)
-        db = client[DATABASE_NAME]
-        collection = db[COLLECTION_NAME]
-        collection.insert_one(prediction_summary)
-        logger.info(f'Prediction summary stored in MongoDB: {prediction_summary}')
-    except Exception as e:
-        logger.error(f'Error storing prediction summary in MongoDB: {str(e)}')
-        return jsonify({"error": "Failed to store prediction summary in MongoDB"}), 500
+    #try:
+     #   client = mongo_client.MongoClient(MONGO_URI)
+      #  db = client[DATABASE_NAME]
+       # collection = db[COLLECTION_NAME]
+       # collection.insert_one(prediction_summary)
+       # logger.info(f'Prediction summary stored in MongoDB: {prediction_summary}')
+    #except Exception as e:
+     #   logger.error(f'Error storing prediction summary in MongoDB: {str(e)}')
+      #  return jsonify({"error": "Failed to store prediction summary in MongoDB"}), 500
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8081)

@@ -38,7 +38,7 @@ jobs:
           
           echo "${{ secrets.DOCKER_REPO_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_REPO_USERNAME }}" --password-stdin
 
-          IMAGE_NAME=raoofk/docker-raoofproject:${{ github.run_number }}
+          IMAGE_NAME=raoofk/docker-raoofproject-yolo:${{ github.run_number }}
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
 
@@ -81,10 +81,9 @@ jobs:
             echo """
             POLYBOT_IMG_NAME=raoofk/docker-raoofproject:${{ github.run_number }}
             YOLO5_IMG_NAME=raoofk/docker-raoofproject:${{ github.run_number }}
-            TELEGRAM_APP_URL=$NGROK_DOMAIN
+            TELEGRAM_APP_URL=${{ secrets.TELEGRAM_APP_URL }}
             MONGO_IMAGE=mongo:5
             YOLO5_URL=http://yolo5_app:8081
-            TELEGRAM_APP_URL=tps://3cd3-13-59-88-73.ngrok-free.app
             """ > .env
             
             docker compose down
