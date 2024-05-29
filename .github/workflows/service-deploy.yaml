@@ -22,7 +22,7 @@ jobs:
           # Login to DockerHub
           echo "${{ secrets.DOCKER_REPO_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_REPO_USERNAME }}" --password-stdin
 
-          IMAGE_NAME=docker-raoofproject:0.0.8:polybot-app-${{ github.run_number }}
+          IMAGE_NAME=raoofk/docker-raoofproject:${{ github.run_number }}
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
 
@@ -38,7 +38,7 @@ jobs:
           
           echo "${{ secrets.DOCKER_REPO_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_REPO_USERNAME }}" --password-stdin
 
-          IMAGE_NAME=docker-raoofproject:0.0.8:yolo5-image-v0.2.2-${{ github.run_number }}
+          IMAGE_NAME=raoofk/docker-raoofproject:${{ github.run_number }}
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
 
@@ -79,8 +79,8 @@ jobs:
             NGROK_DOMAIN=$(curl -s localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
             
             echo """
-            POLYBOT_IMG_NAME=docker-raoofproject:0.0.8:polybot-app-${{ github.run_number }}
-            YOLO5_IMG_NAME=docker-raoofproject:0.0.8:yolo5-image-v0.2.2-${{ github.run_number }}
+            POLYBOT_IMG_NAME=raoofk/docker-raoofproject:${{ github.run_number }}
+            YOLO5_IMG_NAME=raoofk/docker-raoofproject:${{ github.run_number }}
             TELEGRAM_APP_URL=$NGROK_DOMAIN
             MONGO_IMAGE=mongo:5
             YOLO5_URL=http://yolo5_app:8081
