@@ -8,6 +8,7 @@ from loguru import logger
 import os
 import boto3
 from pymongo import mongo_client
+from botocore.exceptions import ClientError
 
 images_bucket = os.environ['BUCKET_NAME']
 
@@ -31,14 +32,11 @@ def predict():
     # Receives a URL parameter representing the image to download from S3
     s3_img_path = request.args.get('imgName')
     img_name = s3_img_path[s3_img_path.rindex("/")+1:]
-
-
     s3 = boto3.client('s3')
     s3.download_file(images_bucket,s3_img_path, img_name)
     
     #  The bucket name is provided as an env var BUCKET_NAME.
     original_img_path = img_name
-
     logger.info(f'prediction: {prediction_id}/{original_img_path}. Download img completed')
 
     # Predicts the objects in the image
@@ -117,7 +115,7 @@ def predict():
 
         # TODO store the prediction_summary in MongoDB
     try:
-        client = mongo_client(MONGO_URI)
+        client = mongo_client.MongoClient(MONGO_URI)
         db = client[DATABASE_NAME]
         collection = db[COLLECTION_NAME]
         collection.insert_one(prediction_summary)
