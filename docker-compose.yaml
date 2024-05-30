@@ -63,6 +63,10 @@ services:
     #entrypoint: [ "bash", "/scripts/mongo_setup.sh" ]
     volumes:
       - ./mongofiles:/scripts
+    depends_on:
+      - mongo2
+      - mongo3
+      - mongo1
     entrypoint: [ "bash", "/scripts/mongo_setup.sh" ]
     networks:
       - mongoCluster
