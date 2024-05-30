@@ -61,9 +61,10 @@ services:
       - mongo2
       - mongo3
     restart: "no"
-    entrypoint: [ "bash", "/scripts/mongo_setup.sh" ]
+    #entrypoint: [ "bash", "/scripts/mongo_setup.sh" ]
     volumes:
       - ./mongofiles:/scripts
+    entrypoint: [ "bash", "/scripts/mongo_setup.sh" ]
     networks:
       - mongoCluster
 
