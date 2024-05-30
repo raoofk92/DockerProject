@@ -59,13 +59,7 @@ services:
 
   mongoinit:
     image: mongo:5
-    hostname: mongoinit
-    container_name: mongoinit
-    depends_on:
-      - mongo1
-      - mongo2
-      - mongo3
-    restart: "no"
+
     #entrypoint: [ "bash", "/scripts/mongo_setup.sh" ]
     volumes:
       - ./mongofiles:/scripts
