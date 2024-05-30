@@ -10,7 +10,8 @@ services:
     networks:
       - mongoCluster
       - yolo-net
-    command: mongod --replSet myReplicaSet --bind_ip_all
+    #command: mongod --replSet myReplicaSet --bind_ip_all
+    command: ["mongod", "--replSet", "myReplicaSet", "--bind_ip_all", "--port", "27017"]
 
   #volumes:
   #logvolume01: { }
@@ -28,7 +29,8 @@ services:
       - mongo2:/data/db
     networks:
       - mongoCluster
-    command: mongod --replSet myReplicaSet --bind_ip_all
+    #command: mongod --replSet myReplicaSet --bind_ip_all
+    command: ["mongod", "--replSet", "myReplicaSet", "--bind_ip_all", "--port", "27017"]
 
   #volumes:
   #logvolume01: { }
@@ -48,7 +50,8 @@ services:
     networks:
       - mongoCluster
       - yolo-net
-    command: mongod --replSet myReplicaSet --bind_ip_all
+    #command: mongod --replSet myReplicaSet --bind_ip_all
+    command: ["mongod", "--replSet", "myReplicaSet", "--bind_ip_all", "--port", "27017"]
 
     #volumes:
     #logvolume01: { }
