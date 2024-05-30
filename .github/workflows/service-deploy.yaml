@@ -76,7 +76,7 @@ jobs:
             
             echo -n "${{ secrets.TELEGRAM_BOT_TOKEN }}" > telegram_bot_token.secret
             
-            NGROK_DOMAIN=$(curl -s localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+            #NGROK_DOMAIN=$(curl -s localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
             
             echo """
             POLYBOT_IMG_NAME=raoofk/docker-raoofproject-poly:${{ github.run_number }}
