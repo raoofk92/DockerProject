@@ -1,6 +1,6 @@
 services:
   mongo1:
-    image: ${MONGO_DB_IMAGE}
+    image: mongo:5
     hostname: mongo1
     container_name: mongo1
     ports:
@@ -18,7 +18,7 @@ services:
 
 
   mongo2:
-    image: ${MONGO_DB_IMAGE}
+    image: mongo:5
     hostname: mongo2
     container_name: mongo2
     ports:
@@ -37,7 +37,7 @@ services:
 
 
   mongo3:
-    image: ${MONGO_DB_IMAGE}
+    image: mongo:5
     hostname: mongo3
     container_name: mongo3
     ports:
@@ -53,7 +53,7 @@ services:
     #docker run -d --rm -p 27019:27017 --name mongo3 --network mongoCluster mongo:5 mongod --replSet myReplicaSet --bind_ip localhost,mongo3
 
   mongoinit:
-    image: ${MONGO_DB_IMAGE}
+    image: mongo:5
     hostname: mongoinit
     container_name: mongoinit
     depends_on:
