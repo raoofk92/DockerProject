@@ -89,8 +89,7 @@ services:
       - BUCKET_NAME=${S3_BUCKET_NAME}
       - TELEGRAM_APP_URL=${TELEGRAM_APP_URL}
       # - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
-    secrets:
-      - telegram_bot_token.secret
+
 
 
   yolo5:
@@ -126,7 +125,5 @@ volumes:
   mongo3:
     driver: local
 
-secrets:
-  telegram_bot_token.secret:
-    file: ./telegram_bot_token.secret
+
 
