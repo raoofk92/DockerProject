@@ -79,7 +79,7 @@ services:
     volumes:
       - ~/.aws/credentials:/root/.aws/credentials:ro
     networks:
-      yolo-polybot:
+      - yolo-polybot
     depends_on:
       - mongoinit
       - yolo5
@@ -88,7 +88,7 @@ services:
     environment:
       - BUCKET_NAME=${S3_BUCKET_NAME}
       - TELEGRAM_APP_URL=${TELEGRAM_APP_URL}
-      # - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
 
 
 
