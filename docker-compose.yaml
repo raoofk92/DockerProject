@@ -1,6 +1,6 @@
 services:
   mongo1:
-    image: mongo:5
+    image: ${MONGO_DB_IMAGE}
     hostname: mongo1
     container_name: mongo1
     ports:
@@ -18,7 +18,7 @@ services:
 
 
   mongo2:
-    image: mongo:5
+    image: ${MONGO_DB_IMAGE}
     hostname: mongo2
     container_name: mongo2
     ports:
@@ -37,7 +37,7 @@ services:
 
 
   mongo3:
-    image: mongo:5
+    image: ${MONGO_DB_IMAGE}
     hostname: mongo3
     container_name: mongo3
     ports:
@@ -53,7 +53,7 @@ services:
     #docker run -d --rm -p 27019:27017 --name mongo3 --network mongoCluster mongo:5 mongod --replSet myReplicaSet --bind_ip localhost,mongo3
 
   mongoinit:
-    image: mongo:5
+    image: ${MONGO_DB_IMAGE}
     hostname: mongoinit
     container_name: mongoinit
     depends_on:
@@ -71,10 +71,6 @@ services:
     image: ${POLYBOT_IMG_NAME}
     hostname: polybot
     container_name: polybot
-    environment:
-      - BUCKET_NAME=${S3_BUCKET_NAME}
-      - TELEGRAM_APP_URL=${TELEGRAM_APP_URL}
-      # - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
     ports:
       - "8443:8443"
     volumes:
@@ -82,10 +78,14 @@ services:
     networks:
       - mongoCluster
     depends_on:
-      - mongo1
-      - mongo2
-      - mongo3
-
+      - mongoinit
+      - yolo5
+   # secrets:
+    #  - telegram_bot_token.secret
+    environment:
+      - BUCKET_NAME=${S3_BUCKET_NAME}
+      - TELEGRAM_APP_URL=${TELEGRAM_APP_URL}
+      # - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
 
 
 
@@ -96,6 +96,13 @@ services:
      - "8081:8081"
    volumes:
      - ~/.aws/:/root/.aws/
+   networks:
+     - mongoCluster
+   depends_on:
+     - mongoinit
+
+
+
 
 
 
