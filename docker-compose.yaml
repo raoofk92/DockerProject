@@ -97,13 +97,15 @@ services:
    hostname: yolo5
    ports:
      - "8081:8081"
-   volumes:
-     - ~/.aws/:/root/.aws/
+   #volumes:
+    # - ~/.aws/:/root/.aws/
    networks:
      - yolo-net
      - yolo-polybot
    depends_on:
      - mongoinit
+   environment:
+     - BUCKET_NAME=${BUCKET_NAME}
 
 
 
@@ -114,7 +116,6 @@ services:
 
 networks:
   mongoCluster:
-    driver: bridge
   yolo-net:
   yolo-polybot:
 
