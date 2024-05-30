@@ -74,7 +74,7 @@ jobs:
             
             cd PolybotService/
             
-            echo "${{ secrets.TELEGRAM_BOT_TOKEN }}" > telegram_bot_token.secret
+            echo -n "${{ secrets.TELEGRAM_BOT_TOKEN }}" > telegram_bot_token.secret
             
             NGROK_DOMAIN=$(curl -s localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
             
@@ -84,6 +84,7 @@ jobs:
             TELEGRAM_APP_URL=${{ secrets.TELEGRAM_APP_URL }}
             MONGO_IMAGE=mongo:5
             YOLO5_URL=http://yolo5_app:8081
+            TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
             """ > .env
             
             docker compose down
