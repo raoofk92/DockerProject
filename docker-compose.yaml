@@ -49,7 +49,6 @@ services:
       - mongo3:/data/db
     networks:
       - mongoCluster
-      - yolo-net
     #command: mongod --replSet myReplicaSet --bind_ip_all
     command: ["mongod", "--replSet", "myReplicaSet", "--bind_ip_all", "--port", "27017"]
 
@@ -101,7 +100,8 @@ services:
    volumes:
      - ~/.aws/:/root/.aws/
    networks:
-     - mongoCluster
+     - yolo-net
+     - yolo-polybot
    depends_on:
      - mongoinit
 
