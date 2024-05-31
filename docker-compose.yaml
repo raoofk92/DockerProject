@@ -77,8 +77,8 @@ services:
     container_name: polybot
     ports:
       - "8443:8443"
-    volumes:
-      - ~/.aws/credentials:/root/.aws/credentials:ro
+   # volumes:
+     # - ~/.aws/credentials:/root/.aws/credentials
     networks:
       - yolo-polybot
     depends_on:
