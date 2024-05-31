@@ -25,6 +25,9 @@ jobs:
           IMAGE_NAME=raoofk/docker-raoofproject-poly:${{ github.run_number }}
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
+          
+          
+          
 
   Yolo5Build:
     runs-on: ubuntu-latest
@@ -69,8 +72,8 @@ jobs:
           host: ${{ env.EC2_PUBLIC_IP }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-          source: ./mongofiles/mongo_setup.sh
-          target: PolybotService/
+          source: mongofiles/mongo_setup.sh
+          target: /scripts
 
       - name: Update the Docker Compose project in the EC2
         uses: appleboy/ssh-action@master
