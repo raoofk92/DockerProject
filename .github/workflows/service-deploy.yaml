@@ -66,6 +66,7 @@ jobs:
           source: docker-compose.yaml
           target: PolybotService/
 
+
       - name: Copy relset to the EC2
         uses: appleboy/scp-action@master
         with:
