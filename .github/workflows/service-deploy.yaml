@@ -73,8 +73,8 @@ jobs:
           host: ${{ env.EC2_PUBLIC_IP }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-          source: scripts/mongo_setup.sh
-          target: PolybotService/script_mount/
+          source: "scripts/*"
+          target: "PolybotService/script_mount/"
 
 
       - name: Transfer files via SCP
@@ -83,8 +83,8 @@ jobs:
           host: ${{ env.EC2_PUBLIC_IP }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-          source: "path/to/source/*"
-          target: "path/to/destination"
+          source: "mongofiles/*"
+          target: "PolybotService/"
 
 
 
