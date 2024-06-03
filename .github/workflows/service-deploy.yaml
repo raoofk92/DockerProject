@@ -135,9 +135,11 @@ jobs:
             YOLO5_IMG_NAME=raoofk/docker-raoofproject-yolo:${{ github.run_number }}
             MONGO_SCRIPT=raoofk/mongoscript:${{ github.run_number }}
             TELEGRAM_APP_URL=${{ secrets.TELEGRAM_APP_URL }}
-            MONGO_IMAGE=mongo:5
+            MONGO_DB_IMAGE=mongo:5
             YOLO5_URL=http://yolo5_app:8081
             TELEGRAM_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
+            S3_BUCKET_NAME=raoofbucket
+            
             """ > .env
             
             docker compose down
