@@ -68,6 +68,7 @@ jobs:
     needs:
       - PolybotBuild
       - Yolo5Build
+      - MONGO-SCRIPT
 
 
     steps:
